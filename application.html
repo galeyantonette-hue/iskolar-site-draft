@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.S.K.O.L.A.R</title>
+    <link rel="stylesheet" href="application.css">
+    <link rel="stylesheet" href="signin.css">
+</head>
+
+<body class="bg1">
+        <!-- Navigation Bar Header -->
+    <header class="header">
+    <nav class="navbar">
+        
+        <div class="name">
+        <div class="logo">
+            <img src="3.png" width="70px" height="70px">
+        </div>
+
+            <div class="namePos">
+            ISKOLAR
+            <br>
+            <h3 style="font-size: 10px;
+            letter-spacing: 1px;
+            line-height: 0cm;
+            ">Interactive System for Knowledge-Oriented Learning, Assistance, and Review</h3>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="application.html">Sign-in</a>
+        </nav>
+        <div class="searchBar">
+        <input type="search" placeholder="Search…" aria-label="Search" id="searchbar"/>
+        </div>
+    </nav>
+    </header>
+
+    <!-- SIGN IN SYSTEM -->
+    
+<div class="account-type-grid">
+    <section class="account-type-section">
+        <h2 class = "signin-container">Select Account Type</h2>
+
+    <div class="acc-btn-leftTop">
+        <div class="account-buttons">
+            <button id="teacherBtn" class="acc-btn">
+                <img src="!Professor2.png" alt="Teacher" class="acc-img">
+                <p>Teacher</p>
+            </button>
+    </div>
+
+    <div class="acc-btn-leftBottom">
+        <div class="account-buttons">
+            <button id="studentBtn" class="acc-btn">
+                <img src="!Student2.png" alt="Student" class="acc-img">
+                <p>Student</p>
+            </button>
+        </div>
+    </div>
+
+    </section>
+
+    <!-- SIGN IN FORM -->
+    <section class="signin-container">
+        <h2 id="formTitle">Sign In</h2>
+
+        <form id="signinForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="school" placeholder="School" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="idnum" placeholder="ID Number" required>
+
+            <button type="submit" id="signinBtn">Sign In</button>
+        </form>
+    </section>
+</div>
+
+<!-- Script to handle account type and redirect -->
+<script>
+let accountType = "";
+
+// Select account type
+document.getElementById("teacherBtn").addEventListener("click", () => {
+    accountType = "teacher";
+    document.getElementById("formTitle").textContent = "Teacher Sign In";
+});
+
+document.getElementById("studentBtn").addEventListener("click", () => {
+    accountType = "student";
+    document.getElementById("formTitle").textContent = "Student Sign In";
+});
+
+// Handle form submission
+document.getElementById("signinForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!accountType) {
+        alert("Please select an account type first.");
+        return;
+    }
+
+    if (accountType === "teacher") {
+        window.location.href = "teachers.html";
+    } else if (accountType === "student") {
+        window.location.href = "students.html";
+    }
+});
+</script>
+
+</body>
+</html>

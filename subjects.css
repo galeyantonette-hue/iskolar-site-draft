@@ -1,0 +1,98 @@
+.header .navbar {
+  background: #7c2b2b; /* maroon */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  padding: 14px 20px;
+  justify-content: space-between;
+}
+
+  .name {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: auto;
+    width: auto;
+  }
+
+  .logo {
+    flex-shrink: 3;
+    margin-right: 0;
+    display: flex;
+    align-items: left;
+    padding: 0;
+    grid-column: 1/2;
+    width: 70px;
+}
+
+  .namePos {
+    font-weight: 700;
+    letter-spacing: 10px;
+    font-size: 18px;
+    margin-left: 0;
+    grid-column: 2/2;
+    padding: 14px 20px;
+}
+
+  .nav a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 14px;
+    opacity: 0.95;
+  }
+
+  .searchBar[type="search"]{
+    padding: 6px 10px;
+    border-radius: 18px;
+    border: none;
+    min-width: 160px;
+  }
+
+
+/* Upload Section */
+
+.upload-section {
+  margin: 20px;
+  font-family: 'Times New Roman', Times, serif, serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  border-radius: 9px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  width: fit-content; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn {
+    margin-top: 20px;
+    background-color: #7c2b2b;
+    color: yellow;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 100%;
+}
+.uploadform {
+    padding: 20px;
+    background-color: darkgreen;
+    border-radius: 10px;
+    color: yellow;
+    width: 300px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.document-list {
+    margin: 20px;
+    font-family: 'Times New Roman', Times, serif, serif;
+    font-size: 18px;
+    color: #333;
+    border-radius: 9px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

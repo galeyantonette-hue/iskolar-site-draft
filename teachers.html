@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I.S.K.O.L.A.R - Teacher View</title>
+<link rel="stylesheet" href="subjects.css">
+<style>
+
+<!-- Page Header -->
+    .page-header {
+        text-align: center;
+        padding: 20px 10px;
+        margin-bottom: 20px;
+    }
+
+    .page-header h2 {
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    .page-header p {
+        font-size: 16px;
+        color: #555;
+    }
+
+<!-- Subjects -->
+    .subject-section {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .subject-section h2 {
+        margin-bottom: 10px;
+        font-size: 22px;
+        color: #333;
+    }
+
+    .subject-section input[type="file"] {
+        margin-bottom: 10px;
+    }
+
+    .subject-section button {
+        margin-left: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        background-color: #d32f2f;
+        color: white;
+        font-size: 14px;
+    }
+
+    .uploaded-files {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .file-card {
+        background: #f0f0f0;
+        border-radius: 8px;
+        padding: 10px 15px;
+        min-width: 120px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .file-card:hover {
+        transform: scale(1.05);
+        background: #e0e0e0;
+    }
+
+    .file-card a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+    }
+
+    .file-counter {
+        font-size: 13px;
+        color: #555;
+        margin-top: 5px;
+    }
+</style>
+</head>
+
+<body>
+<header class="header">
+    <nav class="navbar">
+        <div class="name">
+            <div class="logo">
+                <img src="3.png" width="70px" height="70px">
+            </div>
+            <div class="namePos">
+                ISKOLAR
+                <br>
+                <h3 style="font-size: 10px; letter-spacing: 1px; line-height: 0cm;">
+                    Interactive System for Knowledge-Oriented Learning, Assistance, and Review
+                </h3>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="application.html">Sign-in</a>
+        </nav>
+
+        <div class="searchBar">
+            <input type="search" placeholder="Search…" aria-label="Search" id="searchbar"/>
+        </div>
+    </nav>
+</header>
+
+<!-- Page Header -->
+<div class="page-header">
+    <h2>Access Your Learning Materials</h2>
+    <p>Browse lessons, documents, and review materials for different subjects. Click on the files to open them directly in your browser for easier study and reference.</p>
+</div>
+
+<!-- SUBJECT SECTIONS -->
+<div class="subject-section">
+    <h2>English</h2>
+    <input type="file" id="engFile">
+    <button onclick="uploadSubject('engFile','engList','engCounter')">Upload</button>
+    <div class="file-counter" id="engCounter">0 / 15 files uploaded</div>
+    <div class="uploaded-files" id="engList"></div>
+</div>
+
+<div class="subject-section">
+    <h2>Science</h2>
+    <input type="file" id="sciFile">
+    <button onclick="uploadSubject('sciFile','sciList','sciCounter')">Upload</button>
+    <div class="file-counter" id="sciCounter">0 / 15 files uploaded</div>
+    <div class="uploaded-files" id="sciList"></div>
+</div>
+
+<div class="subject-section">
+    <h2>Math</h2>
+    <input type="file" id="mathFile">
+    <button onclick="uploadSubject('mathFile','mathList','mathCounter')">Upload</button>
+    <div class="file-counter" id="mathCounter">0 / 15 files uploaded</div>
+    <div class="uploaded-files" id="mathList"></div>
+</div>
+
+<div class="subject-section">
+    <h2>Abstract Reasoning</h2>
+    <input type="file" id="absFile">
+    <button onclick="uploadSubject('absFile','absList','absCounter')">Upload</button>
+    <div class="file-counter" id="absCounter">0 / 15 files uploaded</div>
+    <div class="uploaded-files" id="absList"></div>
+</div>
+
+<div class="subject-section">
+    <h2>Reading Comprehension</h2>
+    <input type="file" id="readFile">
+    <button onclick="uploadSubject('readFile','readList','readCounter')">Upload</button>
+    <div class="file-counter" id="readCounter">0 / 15 files uploaded</div>
+    <div class="uploaded-files" id="readList"></div>
+</div>
+
+<script>
+const subjects = ["eng","sci","math","abs","read"];
+let db;
+
+function initDB() {
+    const request = indexedDB.open("ISKOLARDB", 1);
+
+    request.onerror = (e) => console.error("IndexedDB error", e);
+    request.onsuccess = (e) => {
+        db = e.target.result;
+        loadTeacherFiles();
+    };
+
+    request.onupgradeneeded = (e) => {
+        db = e.target.result;
+        subjects.forEach(subject => {
+            if(!db.objectStoreNames.contains(subject)) {
+                db.createObjectStore(subject, { keyPath: "id", autoIncrement: true });
+            }
+        });
+    };
+}
+
+function loadTeacherFiles() {
+    subjects.forEach(subject => {
+        const list = document.getElementById(subject + "List");
+        const counter = document.getElementById(subject + "Counter");
+        list.innerHTML = "";
+
+        const transaction = db.transaction([subject], "readonly");
+        const store = transaction.objectStore(subject);
+
+        let files = [];
+        store.openCursor().onsuccess = function(e) {
+            const cursor = e.target.result;
+            if(cursor){
+                files.push({ id: cursor.value.id, name: cursor.value.name, blob: cursor.value.blob });
+                const card = createFileCard(subject, cursor.value);
+                list.appendChild(card);
+                cursor.continue();
+            } else {
+                counter.textContent = `${files.length} / 15 files uploaded`;
+            }
+        };
+    });
+}
+
+function createFileCard(subject, file) {
+    const card = document.createElement("div");
+    card.className = "file-card";
+
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(file.blob);
+    link.href = url;
+    link.textContent = file.name;
+    link.target = "_blank";
+    card.appendChild(link);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginTop = "5px";
+    deleteBtn.style.backgroundColor = "#f44336";
+    deleteBtn.style.color = "white";
+    deleteBtn.style.border = "none";
+    deleteBtn.style.borderRadius = "5px";
+    deleteBtn.style.padding = "2px 5px";
+    deleteBtn.style.cursor = "pointer";
+    deleteBtn.onclick = () => deleteFile(subject, file.id);
+
+    card.appendChild(deleteBtn);
+    return card;
+}
+
+function uploadSubject(inputId) {
+    const input = document.getElementById(inputId);
+    if(!input.files.length) return;
+
+    const key = inputId.replace("File","");
+    const transaction = db.transaction([key], "readwrite");
+    const store = transaction.objectStore(key);
+
+    Array.from(input.files).forEach(file => {
+        const req = store.add({ name: file.name, blob: file });
+        req.onsuccess = () => loadTeacherFiles();
+    });
+
+    input.value = "";
+}
+
+function deleteFile(subject, id) {
+    if(!confirm("Are you sure you want to delete this file?")) return;
+
+    const transaction = db.transaction([subject], "readwrite");
+    const store = transaction.objectStore(subject);
+    store.delete(id).onsuccess = () => loadTeacherFiles();
+}
+
+window.onload = initDB;
+</script>
+
+
+</body>
+</html>
