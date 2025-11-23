@@ -1,205 +1,67 @@
-/* Navigation Bar Header */
-.header .navbar {
-  background: #7c2b2b; /* maroon */
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 10px; 
-  padding: 14px 20px;
-  justify-content: space-between;
-}
+@media only screen and (max-width: 600px) {
 
-  .name {
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: auto;
-    width: auto;
-  }
-
-  .logo {
-    flex-shrink: 3;
-    margin-right: 0;
-    display: flex;
-    align-items: left;
-    padding: 0;
-    grid-column: 1/2;
-    width: 70px;
-}
-
-  .namePos {
-    font-weight: 700;
-    letter-spacing: 10px;
-    font-size: 18px;
-    margin-left: 0;
-    grid-column: 2/2;
-    padding: 14px 20px;
-}
-
-  .nav a {
-    color: #fff;
-    margin: 0 8px;
-    font-size: 14px;
-    opacity: 0.95;
-  }
-
-  .searchBar[type="search"]{
-    padding: 6px 10px;
-    border-radius: 18px;
-    border: none;
-    min-width: 160px;
-  }
-
-/* Background */
-
-.bg1 {
-    background-image: url('!2bg1.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-.bg2 {
-    background-image: url('!bg1.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    /* Navbar: stack links vertically and center logo/text */
+    .header .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+    }
+    .nav {
+        width: 100%;
+        text-align: center;
+    }
+    .nav a {
+        display: block;
+        margin: 5px 0;
+    }
+    .name {
+        grid-template-columns: 50px 1fr;
+        width: 100%;
+        text-align: center;
+    }
+    .namePos {
+        letter-spacing: 5px;
+        font-size: 14px;
+        padding: 5px 0;
     }
 
-.bg3 {
-    background-image: url('#.png');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
+    /* Heading Section */
+    .heading h1 {
+        font-size: 50px;
+        margin-top: 50px;
+    }
+    .heading p {
+        font-size: 18px;
+    }
 
-/* Body */
-
-.heading {
-    width: 85%;
-    margin: 1px auto; 
-    padding: 1px;
-    background-color: transparent;
-}
-
-.div1 {
-    margin-top: 300px;
-    width: 85% auto;
-    padding: 50px;
-    background-color: #ecefeb;
-    overflow: auto;
-}
-
-.div2 {
-    width: 85% auto;
-    margin: 0 auto; 
-    background-color: #ecefeb;
-    overflow: auto;
-}
-
+    /* .div1 and .div2: full width, stack content */
+    .div1, .div2 {
+        width: 95%;
+        padding: 20px;
+        margin: 20px auto;
+    }
     .div2 div {
-        width: 50%;
-        float: left;
-        box-sizing: border-box;
-        overflow: auto;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
+    /* Info Section Cards: full width, spacing */
+    .infoSection {
+        grid-template-columns: 1fr; /* single column */
+        padding: 20px;
+        gap: 20px;
+    }
 
+    /* Quick Links buttons smaller */
+    .quickLinks a {
+        font-size: 14px;
+        padding: 10px;
+    }
 
-    
- .title {
-  color: #e7e1c9;
-  font-size: 150px;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  text-shadow:
-      0px 4px 10px rgba(0,0,0,0.6),
-      0px 0px 15px rgba(255,220,190,0.5);
+    /* Footer adjustments */
+    footer {
+        font-size: 14px;
+        padding: 12px;
+    }
 }
-
-.subtitle {
-  color: #ffe2cc;
-  font-size: 40px;
-  margin: 0;
-  text-shadow: 0px 2px 8px rgba(0,0,0,0.4);
-}
-
-
-/* Tagline Section */
-
-
-
-/* Info Section Cards */
-.infoSection {
-  width: 90%;
-  margin: 40px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* CARDS WITH GRADIENT + SOFT SHADOWS */
-.infoCard {
-  background: linear-gradient(135deg, #ffffffdd, #f6f6f6ee);
-  backdrop-filter: blur(6px);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 
-      0 4px 14px rgba(0,0,0,0.25),
-      0 8px 24px rgba(0,0,0,0.15) inset;
-  transition: 0.35s ease;
-}
-
-/* Hover Animation */
-.infoCard:hover {
-  transform: translateY(-10px) scale(1.04);
-  box-shadow: 
-      0 8px 25px rgba(0,0,0,0.35),
-      0 0 18px rgba(255,220,190,0.6);
-}
-
-
-/* QUICK LINKS */
-.quickLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.quickLinks a {
-  text-decoration: none;
-  background: linear-gradient(90deg, #7c2b2b, #a83838);
-  color: white;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 15px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: 0.3s ease;
-}
-
-.quickLinks a:hover {
-  transform: scale(1.07);
-  background: linear-gradient(90deg, #a83838, #c74949);
-  box-shadow:
-      0 6px 20px rgba(0,0,0,0.35),
-      0 0 15px rgba(255,200,180,0.8);
-}
-
-
-/* FOOTER */
-footer {
-  background: linear-gradient(90deg, #5e1f1f, #8b2f2f);
-  color: white;
-  padding: 15px;
-  text-align: center;
-  margin-top: 50px;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.35);
-}   
