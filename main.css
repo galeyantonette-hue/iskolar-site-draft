@@ -65,7 +65,7 @@
 }
 
 .div1 {
-  margin-top: 300px;
+  margin-top: 60vh;
   width: 85%;
   padding: 50px;
   background-color: #ecefeb;
@@ -223,3 +223,4 @@ footer {
     width: 95%;
   }
 }
+
