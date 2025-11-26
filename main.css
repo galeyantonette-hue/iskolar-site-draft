@@ -1,66 +1,225 @@
-@media (max-width: 600px) {
+/* Navigation Bar Header */
+.header .navbar {
+  background: #7c2b2b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 
-  /* NAVBAR FIX */
+.name {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 5px;
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.namePos {
+  font-weight: 700;
+  letter-spacing: 10px;
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.nav a {
+  color: #fff;
+  margin: 0 8px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.searchBar[type="search"] {
+  padding: 6px 10px;
+  border-radius: 18px;
+  border: none;
+  min-width: 160px;
+}
+
+/* Backgrounds */
+.bg1, .bg2, .bg3 {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* Keep your original image paths */
+.bg1 { background-image: url('!2bg1.jpg'); }
+.bg2 { background-image: url('!bg1.png'); }
+.bg3 { background-image: url('3.png'); }
+
+/* Main Body */
+.heading {
+  width: 85%;
+  margin: 1px auto;
+  padding: 1px;
+}
+
+.div1 {
+  margin-top: 300px;
+  width: 85%;
+  padding: 50px;
+  background-color: #ecefeb;
+}
+
+/* Fix broken width syntax */
+.div2 {
+  width: 85%;
+  margin: 0 auto;
+  background-color: #ecefeb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Make inside divs responsive */
+.div2 div {
+  flex: 1 1 300px;
+}
+
+/* Titles */
+.title {
+  color: #e7e1c9;
+  font-size: 150px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  text-shadow: 0px 4px 10px rgba(0,0,0,0.6), 0px 0px 15px rgba(255,220,190,0.5);
+}
+
+.subtitle {
+  color: #ffe2cc;
+  font-size: 40px;
+  margin: 0;
+  text-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Info Section Cards */
+.infoSection {
+  width: 90%;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.infoCard {
+  background: linear-gradient(135deg, #ffffffdd, #f6f6f6ee);
+  backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 
+      0 4px 14px rgba(0,0,0,0.25),
+      0 8px 24px rgba(0,0,0,0.15) inset;
+  transition: 0.35s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35), 0 0 18px rgba(255,220,190,0.6);
+}
+
+/* Quick Links */
+.quickLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quickLinks a {
+  text-decoration: none;
+  background: linear-gradient(90deg, #7c2b2b, #a83838);
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+}
+
+.quickLinks a:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #a83838, #c74949);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 15px rgba(255,200,180,0.8);
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #5e1f1f, #8b2f2f);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  margin-top: 50px;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.35);
+}
+
+/* ------------------------------ */
+/* 📱 MOBILE RESPONSIVE SECTION   */
+/* ------------------------------ */
+
+@media (max-width: 768px) {
+
+  /* Navbar stacks properly */
   .header .navbar {
-      flex-direction: column;
-      text-align: center;
-      gap: 10px;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
   }
+
   .name {
-      grid-template-columns: 1fr;
-      justify-items: center;
+    grid-template-columns: 50px 1fr;
   }
-  .logo {
-      justify-content: center;
+
+  .logo img {
+    width: 50px;
+    height: 50px;
   }
+
   .namePos {
-      padding: 0;
-      text-align: center;
-      letter-spacing: 5px;
-      font-size: 14px;
+    font-size: 14px;
+    letter-spacing: 5px;
+    padding: 0;
   }
+
   .nav a {
-      display: inline-block;
-      margin: 5px;
-      font-size: 16px;
+    font-size: 12px;
+    margin: 0 5px;
   }
+
   .searchBar {
-      width: 90%;
+    min-width: 100%;
   }
 
-  /* TITLE / HEADING FIX */
+  /* Heading fonts shrink */
   .title {
-      font-size: 60px;
-      text-align: center;
+    font-size: 70px;
   }
+
   .subtitle {
-      font-size: 20px;
-      text-align: center;
+    font-size: 22px;
   }
 
-  /* DIV SECTIONS FIX */
-  .div1,
-  .div2 {
-      width: 95%;
-      padding: 20px;
-      margin-top: 60px;
+  /* Div sections fix */
+  .div1, .div2 {
+    width: 95%;
+    padding: 20px;
+    margin-top: 100px;
   }
 
-  /* Make .div2 stack vertically instead of left/right */
-  .div2 div {
-      width: 100%;
-      float: none;
+  .heading {
+    width: 95%;
   }
 
-  /* INFO CARDS GRID FIX */
   .infoSection {
-      grid-template-columns: 1fr;
-      width: 95%;
-  }
-
-  /* QUICK LINKS FIX */
-  .quickLinks a {
-      font-size: 14px;
-      padding: 10px;
+    width: 95%;
   }
 }
