@@ -1,3 +1,51 @@
+const searchbar = document.getElementById('searchbar');
+const easteregg = document.getElementById('EASTEREGG');
+const pics = document.getElementById('PICS');
+
+searchbar.addEventListener("keydown", function(event){
+        
+        if (event.key === "Enter"){
+            if (
+            searchbar.value === "home" ||
+            searchbar.value === "Home" ||
+            searchbar.value === "Main" ||
+            searchbar.value === "main" ||
+            searchbar.value === "Index" ||
+            searchbar.value === "index"
+            ) {
+            window.location.href = "index.html";
+            }
+
+            if (
+            searchbar.value === "application" ||
+            searchbar.value === "sign-in" ||
+            searchbar.value === "student" ||
+            searchbar.value === "teacher" ||
+            searchbar.value === "users"
+            ) {
+            window.location.href = "application.html";
+            }
+
+            if (
+            searchbar.value === "subjects" ||
+            searchbar.value === "subject" ||
+            searchbar.value === "courses" ||
+            searchbar.value === "guest"
+            ) {
+            window.location.href = "sbjctGuest.html";
+        }
+
+  }})
+
+
+
+
+
+
+
+
+
+
 let accountType = ""; // teacher or student
 
 // Account type buttons
@@ -11,7 +59,7 @@ document.getElementById("studentBtn").addEventListener("click", () => {
     document.getElementById("formTitle").innerHTML = "Student Sign In";
 });
 
-// Correct login credentials (editable)
+// login credentials
 const teachers = [
     {
         name: "T1",
@@ -23,7 +71,7 @@ const teachers = [
 
 const students = [
     {
-        name: "S2",
+        name: "S1",
         school: "SHS",
         email: "student@test.com",
         id: "S001"
@@ -55,7 +103,7 @@ document.getElementById("signinForm").addEventListener("submit", function (e) {
         );
 
         if (valid) {
-            window.location.href = "subjects.html"; // redirect
+            window.location.href = "subjectsmain.html"; // redirect
         }
     }
 
@@ -68,7 +116,7 @@ document.getElementById("signinForm").addEventListener("submit", function (e) {
         );
 
         if (valid) {
-            window.location.href = "student.html"; // redirect
+            window.location.href = "sbjctStudmain.html"; // redirect
         }
     }
 
